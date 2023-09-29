@@ -1,54 +1,47 @@
 #include "main.h"
+
+int check_pal(char *s, int i, int len);
+int _strlen_recursion(char *s);
+
 /**
- * is_palindrome - if a string is a palindrome
- * @s: string
- * Return: On success 1
- * other ways 0 returned
+ * is_palindrome - checks if a string is a palindrome
+ * @s: string to reverse
+ *
+ * Return: 1 if it is, 0 it's not
  */
 int is_palindrome(char *s)
 {
-	return (omar_palindrome(s, _strlen_recursion(s) - 1));
+	if (*s == 0)
+		return (1);
+	return (check_pal(s, 0, _strlen_recursion(s)));
 }
 
 /**
  * _strlen_recursion - returns the length of a string
- * @s: pointer to string
- * Return: Always len
+ * @s: string to calculate the length of
+ *
+ * Return: length of the string
  */
 int _strlen_recursion(char *s)
 {
-	if (*s == 0)
+	if (*s == '\0')
 		return (0);
-
-	else
-	{
-		if (*s == '\0')
-		{
-			return (0);
-		}
-		return (1 + _strlen_recursion(s + 1));
-	}
+	return (1 + _strlen_recursion(s + 1));
 }
 
 /**
- * omar_palindrome - if a string is a palindrome
- * @s: string
- * @i: difference
- * Return: On success 1
- * other ways 0 returned
+ * check_pal - checks the characters recursively for palindrome
+ * @s: string to check
+ * @i: iterator
+ * @len: length of the string
+ *
+ * Return: 1 if palindrome, 0 if not
  */
-int omar_palindrome(char *s, int i)
+int check_pal(char *s, int i, int len)
 {
-	if (*s == *(s + i))
-	{
-		if (i <= 0)
-			return (1);
-
-		else
-		{
-			return (omar_palindrome((s + 1), i - 2));
-		}
-	}
-	else
+	if (*(s + i) != *(s + len - 1))
 		return (0);
+	if (i >= len)
+		return (1);
+	return (check_pal(s, i + 1, len - 1));
 }
