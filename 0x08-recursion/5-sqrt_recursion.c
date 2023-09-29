@@ -1,34 +1,33 @@
 #include "main.h"
+
+int actual_sqrt_recursion(int n, int i);
+
 /**
- * _sqrt_recursion - the natural square root of a number.
- * @n: the number
- * Return: the natural square root of n
- * On error, -1 is returned.
+ * _sqrt_recursion - returns the natural square root of a number
+ * @n: number to calculate the square root of
+ *
+ * Return: the resulting square root
  */
 int _sqrt_recursion(int n)
 {
-	return (omar_needs_this(n, 0));
+	if (n < 0)
+		return (-1);
+	return (actual_sqrt_recursion(n, 0));
 }
 
 /**
- * omar_needs_this - function added
- * @n: the number
- * @s: root
- * Return: the natural square root of n
- * On error, -1 is returned.
+ * actual_sqrt_recursion - recurses to find the natural
+ * square root of a number
+ * @n: number to calculate the sqaure root of
+ * @i: iterator
+ *
+ * Return: the resulting square root
  */
-int omar_needs_this(int n, int s)
+int actual_sqrt_recursion(int n, int i)
 {
-	if (s * s == n)
-	{
-		return (s);
-	}
-	else if (s * s > n)
-	{
+	if (i * i > n)
 		return (-1);
-	}
-	else
-	{
-		return (omar_needs_this(n, s + 1));
-	}
+	if (i * i == n)
+		return (i);
+	return (actual_sqrt_recursion(n, i + 1));
 }
