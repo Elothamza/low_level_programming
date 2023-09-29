@@ -1,41 +1,32 @@
 #include "main.h"
+
+int actual_prime(int n, int i);
+
 /**
- * is_prime_number - if the input integer is a prime number
- * @n: number
- * Return: On success 1.
- * Other ways, 0 is returned.
+ * is_prime_number - says if an integer is a prime number or not
+ * @n: number to evaluate
+ *
+ * Return: 1 if n is a prime number, 0 if not
  */
 int is_prime_number(int n)
 {
 	if (n <= 1)
-	{
 		return (0);
-	}
-	else
-	{
-		return (omar_prime_fun(n, 2));
-	}
+	return (actual_prime(n, n - 1));
 }
 
 /**
- * omar_prime_fun - if the input integer is a prime number
- * @n: number
- * @s: div
- * Return: On success 1.
- * Other ways, 0 is returned.
+ * actual_prime - calculates if a number is prime recursively
+ * @n: number to evaluate
+ * @i: iterator
+ *
+ * Return: 1 if n is prime, 0 if not
  */
-int omar_prime_fun(int n, int s)
+int actual_prime(int n, int i)
 {
-	if (n % s == 0 && s < n)
-	{
-		return (0);
-	}
-	else if (s >= n)
-	{
+	if (i == 1)
 		return (1);
-	}
-	else
-	{
-		return (omar_prime_fun(n, s + 1));
-	}
+	if (n % i == 0 && i > 0)
+		return (0);
+	return (actual_prime(n, i - 1));
 }
